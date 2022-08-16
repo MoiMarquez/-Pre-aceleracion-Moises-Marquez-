@@ -1,6 +1,7 @@
 package com.Alkemy.Disney.disney.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -22,7 +23,7 @@ public class PeliSerieEntity {
     private String imagen;
     private String titulo;
 
-    @DateTimeFormat (pattern = "dd/MM/yyyy")
+    @DateTimeFormat(pattern = "yyyy/MM/dd")
     private LocalDate fecha;
 
     private Integer calificacion;
