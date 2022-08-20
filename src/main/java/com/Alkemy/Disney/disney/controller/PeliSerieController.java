@@ -5,6 +5,7 @@ import com.Alkemy.Disney.disney.dto.PeliSerieDTO;
 import com.Alkemy.Disney.disney.service.GeneroService;
 import com.Alkemy.Disney.disney.service.PeliSerieService;
 import com.Alkemy.Disney.disney.service.implementacion.PeliSerieServiceImp;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("peliseries")
+@RequiredArgsConstructor
 public class PeliSerieController {
 
     @Autowired
@@ -29,6 +31,13 @@ public class PeliSerieController {
     public ResponseEntity<PeliSerieDTO> save(@RequestBody PeliSerieDTO peliseries) {
         PeliSerieDTO peliserieGuardada = peliSerieService.save(peliseries);
         return ResponseEntity.status(HttpStatus.CREATED).body(peliserieGuardada);
+
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete (@PathVariable Long id) {
+        this.peliSerieService.delete(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 
     }
 }

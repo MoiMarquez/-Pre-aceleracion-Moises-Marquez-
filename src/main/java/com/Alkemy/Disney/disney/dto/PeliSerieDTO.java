@@ -20,10 +20,11 @@ public class PeliSerieDTO {
     @DateTimeFormat(pattern = "yyyy/MM/dd")
     private LocalDate fecha;
 
-    private Integer calificacion;
+    private Float calificacion;
 
+   /*
     @Column(name = "peliserie_activo")
     private boolean peliserieActivo;
-
+*/
 
 }

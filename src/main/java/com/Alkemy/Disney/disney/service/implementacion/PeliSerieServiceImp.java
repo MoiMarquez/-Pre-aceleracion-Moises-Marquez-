@@ -32,4 +32,8 @@ public class PeliSerieServiceImp implements PeliSerieService {
         List<PeliSerieDTO> result = peliSerieMapper.peliSerieEntityList2DTOList(entities);
         return result;
     }
+
+    public void delete(Long id){
+        this.peliSerieRepository.deleteById(id);
+    }
 }

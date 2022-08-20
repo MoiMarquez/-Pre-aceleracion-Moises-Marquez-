@@ -3,6 +3,8 @@ package com.Alkemy.Disney.disney.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -12,6 +14,9 @@ import java.util.Set;
 @Table(name = "personaje")
 @Getter
 @Setter
+@SQLDelete( sql = "UPDATE personaje SET personaje_activo = false WHERE id=?")
+@Where(clause = "personaje_activo=true")
+
 public class PersonajeEntity {
 
     @Id
@@ -24,7 +29,7 @@ public class PersonajeEntity {
     private String historia;
 
     @Column(name = "personaje_activo")
-    private boolean personajeActivo;
+    private boolean personajeActivo = Boolean.TRUE;
 
     @ManyToMany (
         cascade = {

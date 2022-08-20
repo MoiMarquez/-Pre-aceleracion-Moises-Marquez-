@@ -2,6 +2,8 @@ package com.Alkemy.Disney.disney.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -11,6 +13,8 @@ import java.util.List;
 @Table(name = "genero")
 @Getter
 @Setter
+@SQLDelete( sql = "UPDATE genero SET gen_activo = false WHERE id=?")
+@Where(clause = "gen_activo=true")
 
 public class GeneroEntity {
     @Id
@@ -20,7 +24,7 @@ public class GeneroEntity {
     private String imagen;
 
     @Column(name = "gen_activo")
-    private boolean genActivo;
+    private boolean genActivo = Boolean.TRUE;
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<PeliSerieEntity> peliserie = new ArrayList<>();

@@ -4,6 +4,8 @@ package com.Alkemy.Disney.disney.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -15,6 +17,10 @@ import java.util.List;
 @Table(name = "peliserie")
 @Getter
 @Setter
+@SQLDelete( sql = "UPDATE peliserie SET peliserie_activo = false WHERE id=?")
+@Where(clause = "peliserie_activo=true")
+
+
 public class PeliSerieEntity {
 
     @Id
@@ -26,10 +32,10 @@ public class PeliSerieEntity {
     @DateTimeFormat(pattern = "yyyy/MM/dd")
     private LocalDate fecha;
 
-    private Integer calificacion;
+    private Float calificacion;
 
     @Column(name = "peliserie_activo")
-    private boolean peliserieActivo;
+    private boolean peliserieActivo = Boolean.TRUE;
 
     /*
     @ManyToOne (fetch = FetchType.EAGER, cascade = CascadeType.ALL)

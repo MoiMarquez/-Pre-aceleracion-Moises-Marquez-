@@ -31,4 +31,9 @@ public class PersonajeServiceImp  implements PersonajeService {
         List<PersonajeDTO> result = personajeMapper.personajeEntityList2DTOList(entities);
         return result;
     }
+
+    public void delete(Long id){
+        this.personajeRepository.deleteById(id);
+    }
+
 }
